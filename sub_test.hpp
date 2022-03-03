@@ -1,44 +1,23 @@
 #include "op.hpp"
-#include "sub.hpp"
+#include "sub.hpp" 
 
-TEST(SubTest, SubEvaluateNonZero) {
-    Op* left = new Op(8);
-    Base* right = new SevenOpMock();
+TEST(SubTest, NumberChildren) {
+    Op* left = new Op(10);
+    Base* right = new Op(20);
     Sub* test = new Sub(left, right);
-    EXPECT_EQ(test->evaluate(), 0.5);
+    EXPECT_EQ(test->number_of_children(), 2);
 }
 
-TEST(SubTest, SubStringifyNonZero) {
-    Op* left = new Op(8);
-    Base* right = new SevenOpMock();
+TEST(SubTest, ChildLeft) {
+    Op* left = new Op(10);
+    Base* right = new Op(20);
     Sub* test = new Sub(left, right);
-    EXPECT_EQ(test->stringify(), "(8-7.5)");
+    EXPECT_EQ(test->get_child(0), left);
 }
 
-TEST(SubTest, SubEvaluateZero) {
-    Op* left = new Op(0);
-    Base* right = new SevenOpMock();
+TEST(SubTest, ChildRight) {
+    Op* left = new Op(10);
+    Base* right = new Op(20);
     Sub* test = new Sub(left, right);
-    EXPECT_EQ(test->evaluate(), -7.5);
-}
-
-TEST(SubTest, SubStringifyZero) {
-    Op* left = new Op(0);
-    Base* right = new SevenOpMock();
-    Sub* test = new Sub(left, right);
-    EXPECT_EQ(test->stringify(), "(0-7.5)");
-}
-
-TEST(SubTest, SubEvaluateNegative) {
-    Op* left = new Op(-8);
-    Base* right = new SevenOpMock();
-    Sub* test = new Sub(left, right);
-    EXPECT_EQ(test->evaluate(), -15.5);
-}
-
-TEST(SubTest, SubStringifyNegative) {
-    Op* left = new Op(-8);
-    Base* right = new SevenOpMock();
-    Sub* test = new Sub(left, right);
-    EXPECT_EQ(test->stringify(), "(-8-7.5)");
+    EXPECT_EQ(test->get_child(1), right);
 }
