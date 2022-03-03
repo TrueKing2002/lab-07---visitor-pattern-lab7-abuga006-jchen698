@@ -1,58 +1,23 @@
 #include "op.hpp"
 #include "pow.hpp"
 
-TEST(PowTest, PowEvaluateNonZero) {
-    Op* left = new Op(8);
-    Base* right = new Op(7);
+TEST(PowTest, NumberChildren) {
+    Op* left = new Op(10);
+    Base* right = new Op(20);
     Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->evaluate(), 2097152);
+    EXPECT_EQ(test->number_of_children(), 2);
 }
 
-TEST(PowTest, PowStringifyNonZero) {
-    Op* left = new Op(8);
-    Base* right = new Op(7);
+TEST(PowTest, ChildLeft) {
+    Op* left = new Op(10);
+    Base* right = new Op(20);
     Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->stringify(), "(8**7)");
+    EXPECT_EQ(test->get_child(0), left);
 }
 
-TEST(PowTest, PowEvaluateZero) {
-    Op* left = new Op(0);
-    Base* right = new SevenOpMock();
+TEST(PowTest, ChildRight) {
+    Op* left = new Op(10);
+    Base* right = new Op(20);
     Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->evaluate(), 0);
-}
-
-TEST(PowTest, PowStringifyZero) {
-    Op* left = new Op(0);
-    Base* right = new SevenOpMock();
-    Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->stringify(), "(0**7.5)");
-}
-
-TEST(PowTest, PowEvaluateZeroPower) {
-    Base* left = new SevenOpMock();
-    Base* right = new ZeroOpMock();
-    Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->evaluate(), 1);
-}
-
-TEST(PowTest, PowEvaluateNegative) {
-    Op* left = new Op(-8);
-    Base* right = new Op(7);
-    Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->evaluate(), -2097152);
-}
-
-TEST(PowTest, PowStringifyNegative) {
-    Op* left = new Op(-8);
-    Base* right = new Op(7);
-    Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->stringify(), "(-8**7)");
-}
-
-TEST(PowTest, PowEvaluateNegativeNumberNegativePower) {
-    Op* left = new Op(-8);
-    Base* right = new Op(-2);
-    Pow* test = new Pow(left, right);
-    EXPECT_EQ(test->evaluate(), 0.015625);
+    EXPECT_EQ(test->get_child(1), right);
 }

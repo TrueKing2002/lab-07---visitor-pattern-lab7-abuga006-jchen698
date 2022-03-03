@@ -1,44 +1,24 @@
 #include "op.hpp"
 #include "add.hpp"
 
-TEST(AddTest, AddEvaluateNormal) {
+TEST(AddTest, NumberChildren) {
     Op* left = new Op(10);
-    Base* right = new SevenOpMock();
+    Base* right = new Op(20);
     Add* test = new Add(left, right);
-    EXPECT_EQ(test->evaluate(), 17.5);
+    EXPECT_EQ(test->number_of_children(), 2);
 }
 
-TEST(AddTest, AddStringifyNormal) {
+TEST(AddTest, ChildLeft) {
     Op* left = new Op(10);
-    Base* right = new SevenOpMock();
+    Base* right = new Op(20);
     Add* test = new Add(left, right);
-    EXPECT_EQ(test->stringify(), "(10+7.5)");
+    EXPECT_EQ(test->get_child(0), left);
 }
 
-TEST(AddTest, AddEvaluateZero) {
-    Op* left = new Op(0);
-    Base* right = new SevenOpMock();
+TEST(AddTest, ChildRight) {
+    Op* left = new Op(10);
+    Base* right = new Op(20);
     Add* test = new Add(left, right);
-    EXPECT_EQ(test->evaluate(), 7.5);
+    EXPECT_EQ(test->get_child(1), right);
 }
-
-TEST(AddTest, AddStringifyZero) {
-    Op* left = new Op(0);
-    Base* right = new SevenOpMock();
-    Add* test = new Add(left, right);
-    EXPECT_EQ(test->stringify(), "(0+7.5)");
-}
-
-TEST(AddTest, AddEvaluateNeg) {
-    Op* left = new Op(-10);
-    Base* right = new SevenOpMock();
-    Add* test = new Add(left, right);
-    EXPECT_EQ(test->evaluate(), -2.5);
-}
-
-TEST(AddTest, AddStringifyNeg) {
-    Op* left = new Op(-10);
-    Base* right = new SevenOpMock();
-    Add* test = new Add(left, right);
-    EXPECT_EQ(test->stringify(), "(-10+7.5)");
-}
+    

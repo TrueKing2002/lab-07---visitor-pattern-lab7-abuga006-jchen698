@@ -2,10 +2,6 @@
 
 #include "op_test.hpp"
 
-#include "seven_op_mock.hpp"
-#include "negative_seven_op_mock.hpp"
-#include "zero_op_mock.hpp"
-
 #include "mult_test.hpp"
 
 #include "div_test.hpp"
