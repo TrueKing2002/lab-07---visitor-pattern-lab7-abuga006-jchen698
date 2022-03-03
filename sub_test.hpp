@@ -1,3 +1,4 @@
+
 #include "op.hpp"
 #include "sub.hpp" 
 
@@ -21,3 +22,4 @@ TEST(SubTest, ChildRight) {
     Sub* test = new Sub(left, right);
     EXPECT_EQ(test->get_child(1), right);
 }
+

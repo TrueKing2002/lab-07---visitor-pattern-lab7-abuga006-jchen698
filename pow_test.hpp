@@ -1,3 +1,4 @@
+
 #include "op.hpp"
 #include "pow.hpp"
 
@@ -21,3 +22,4 @@ TEST(PowTest, ChildRight) {
     Pow* test = new Pow(left, right);
     EXPECT_EQ(test->get_child(1), right);
 }
+

@@ -1,3 +1,4 @@
+
 #include "op.hpp"
 #include "div.hpp"
 
@@ -22,3 +23,4 @@ TEST(DivTest, ChildRight) {
     Div* test = new Div(left, right);
     EXPECT_EQ(test->get_child(1), right);
 }
+
