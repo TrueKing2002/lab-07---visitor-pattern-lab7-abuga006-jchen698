@@ -6,19 +6,19 @@
 #include "op.hpp"
 #include "rand.hpp"
 
-TEST(OpTest, OpEvaluateNonZero) {
-    Op* test = new Op(8);
-    EXPECT_EQ(test->evaluate(), 8);
+TEST(OpTest, NumberChildren) {
+    Op* test = new Op(10);
+    EXPECT_EQ(test->number_of_children(), 0);
 }
 
-//TEST(OpTest, OpStringifyNonZero) {
-//    Op* test = new Op(8);
-//    EXPECT_EQ(test->stringify(), "8.0");
-//}
-
-TEST(OpTest, OpEvaluateRand) {
+TEST(OpTest, NumberChildrenRandom) {
     Rand* test = new Rand();
-    EXPECT_EQ(test->evaluate(), rand() % 100 - 3);
+    EXPECT_EQ(test->number_of_children(), 0);
+}
+
+TEST(OpTest, NonexistentChild) {
+    Op* test = new Op(10);
+    EXPECT_EQ(test->get_child(0), nullptr);
 }
 
 #endif //__OP_TEST_HPP__
