@@ -2,7 +2,6 @@
 #define __BASE_HPP__
 
 #include <string>
-#include "visitor.hpp"
 
 class Visitor;
 
